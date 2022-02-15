@@ -1,4 +1,4 @@
-package com.javabitecode.demo;
+package com.javabitecode.demo.controllers;
 
 import com.javabitecode.demo.domain.Message;
 import com.javabitecode.demo.repos.MessageRepository;
@@ -13,7 +13,7 @@ import java.util.Iterator;
 import java.util.List;
 
 @Controller
-public class GreetingController {
+public class MainController {
 
     private MessageRepository messageRepository;
     @Autowired
@@ -26,14 +26,14 @@ public class GreetingController {
         return "greeting";
     }
 
-    @GetMapping("main")
+    @GetMapping("/main")
     public String main(Model model){
         Iterable<Message> messages = messageRepository.findAll();
         model.addAttribute("messages", messages);
         return "main";
     }
 
-    @PostMapping("main")
+    @PostMapping("/main")
     public String add(@RequestParam String text, @RequestParam String tag, Model model){
         Message message = new Message(text, tag);
         messageRepository.save(message);
