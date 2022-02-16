@@ -1,9 +1,6 @@
 package com.javabitecode.demo.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Message {
@@ -14,13 +11,27 @@ public class Message {
 
     private String text;
     private String teg;
-
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
+    private User author;
     public Message() {
     }
+    public String getAuthorName(){
+        return author != null ? author.getUsername() : "<none>";
+    }
 
-    public Message(String text, String teg) {
+    public Message(String text, String teg, User author) {
+        this.author=author;
         this.text = text;
         this.teg = teg;
+    }
+
+    public User getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(User author) {
+        this.author = author;
     }
 
     public Integer getId() {
@@ -47,12 +58,5 @@ public class Message {
         this.teg = teg;
     }
 
-    @Override
-    public String toString() {
-        return "Message{" +
-                "id=" + id +
-                ", text='" + text + '\'' +
-                ", teg='" + teg + '\'' +
-                '}';
-    }
+
 }
