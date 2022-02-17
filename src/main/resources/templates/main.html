@@ -20,11 +20,10 @@
   </form>
 </div>
 
-<form method="post" action="filter">
-<input type="text" name="filter">
+  <form method="get" action="/main">
+<input type="text" name="filter" >
   <button type="submit">Search</button>
-  <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-</form>
+  </form>
 <div>Список сообщений</div>
 <div th:each="message : ${messages}">
   <div th:text="'Id: ' + ${message.getId()}"></div>
