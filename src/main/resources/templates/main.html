@@ -13,9 +13,10 @@
 </div>
 <span><a href="/user">User list</a></span>
 <div>
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
         <input type="text" name="text" placeholder="Введите сообщение"/>
         <input type="text" name="tag" placeholder="Тэг">
+        <input type="file" name="file">
         <button type="submit">Добавить</button>
         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
     </form>
@@ -31,6 +32,9 @@
     <div th:text="${message.getTeg()}"></div>
     <div th:text="${message.getText()}"></div>
     <div th:text="${message.getAuthorName()}"></div>
+    <div th:if="${message.getFilename() != null}">
+        <img th:src="@{/img/{filename}(filename = ${message.getFilename()})}">
+    </div>
 </div>
 </body>
 </html>
