@@ -3,8 +3,10 @@
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <title>Registration </title>
+    <div th:replace="fragments/head :: head"></div>
 </head>
 <body>
+<div class="container">
 Add new User
 
 <div th:text="${message}"></div>
@@ -15,5 +17,7 @@ Add new User
     <div><input type="submit" value="Registration"/></div>
     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 </form>
+</div>
+<div th:replace="fragments/bootstrapJS :: bootstrapJS"></div>
 </body>
 </html>

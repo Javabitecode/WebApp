@@ -1,10 +1,12 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <title>Getting Started: Serving Web Content</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Main</title>
+    <div th:replace="fragments/head :: head"></div>
 </head>
 <body>
+<div th:replace="fragments/navbar :: navbar"></div>
+<div class="container mt-5">
 <div>
     <form action="/logout" method="post">
         <input type="submit" value="Sign Out"/>
@@ -36,5 +38,7 @@
         <img th:src="@{/img/{filename}(filename = ${message.getFilename()})}">
     </div>
 </div>
+</div>
+<div th:replace="fragments/bootstrapJS :: bootstrapJS"></div>
 </body>
 </html>
